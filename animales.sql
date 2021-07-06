@@ -19,7 +19,6 @@ CREATE TABLE Animal (
     id INT AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(20) NOT NULL,
     edad INT not null,
-    dni VARCHAR(9) unique not null,
     especie int,
     n_chip int unique not null,
     duenyo int,
