@@ -17,11 +17,6 @@ const Animal = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    dni: {
-      type: DataTypes.STRING(9),
-      unique: true,
-      allowNull: false,
-    },
     especie: DataTypes.INTEGER,
     duenyo: DataTypes.INTEGER,
     n_chip: {
