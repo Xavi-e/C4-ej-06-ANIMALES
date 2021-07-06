@@ -4,15 +4,12 @@ const { Sequelize } = require("sequelize");
 const usuarioFelipe = process.env.USERNAMEDB;
 const passwordFelipe = process.env.PASSWORDDB;
 
-
-
 const sequelize = new Sequelize({
-    host: "localhost",
-    username: usuarioFelipe,
-    password: passwordFelipe,
-    database: "animales",
-    dialect: "mysql",
-
+  host: "localhost",
+  username: usuarioFelipe,
+  password: passwordFelipe,
+  database: "animales",
+  dialect: "mysql",
 });
 // sequelize.authenticate().then(() =>{
 //     console.log("Estamos Dentro!");
@@ -22,3 +19,4 @@ const sequelize = new Sequelize({
 //     console.log(err.message);
 
 // });
+module.exports = sequelize;
