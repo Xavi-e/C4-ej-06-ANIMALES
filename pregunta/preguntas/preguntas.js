@@ -32,5 +32,23 @@ const preguntas = [
             }
 
         ]
-    }
+    },
+    {
+      name: "nombreNuevo",
+      type: "input",
+      message: "Introduzca nombre nuevo: ",
+      when: (respuestas) => respuestas.consulta === "cambiarNombre",
+    },
+    {
+      name: "nombreEspecie",
+      message: "Introduce el nombre de la especie:",
+      type: "input",
+      when: (respuestasAnteriores) =>
+        respuestasAnteriores.opcion === "animalesUnaEspecie",
+    },
+
+
 ];
+module.exports = {
+    preguntas,
+};
