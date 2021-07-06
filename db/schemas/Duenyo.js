@@ -1,7 +1,6 @@
 const { DataTypes } = require("sequelize");
 const Animal = require("./Animal");
-
-const sequelize = require();
+const sequelize = require("..");
 
 const Duenyo = sequelize.define(
   "Duenyo",
