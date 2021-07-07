@@ -1,8 +1,9 @@
 const { preguntar } = require("./pregunta/preguntador");
-const { listarTodosMisAnimales } = require("./db/operacionesAnimales");
+const {
+  listarAnimalesEspecie,
+} = require("./db/operaciones/operacionesAnimalesPorEspecie");
 
-const listar = async() => {
-  const animales = await listarTodosMisAnimales("48872615L");
-  console.log(animales);
+const listar = async () => {
+  const animales = await listarAnimalesEspecie(1);
 };
 listar();

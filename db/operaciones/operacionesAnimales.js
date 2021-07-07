@@ -1,7 +1,7 @@
 const { Op } = require("sequelize");
-const Animales = require("./schemas/Animal");
-const Duenyo = require("./schemas/Duenyo");
-const Especie = require("./schemas/Especie");
+const Animales = require("../schemas/Animal");
+const Duenyo = require("../schemas/Duenyo");
+const Especie = require("../schemas/Especie");
 // const modificarAlumno = async () => {
 //   try {
 //     const alumnoModificado = await Alumno.update(
