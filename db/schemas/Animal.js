@@ -28,13 +28,13 @@ const Animal = sequelize.define(
     },
   },
   {
-    tableName: "Animal",
+    tableName: "animal",
     timestamps: false,
   }
 );
 Duenyo.hasMany(Animal, { foreignKey: "duenyo" });
 Animal.belongsTo(Duenyo, { foreignKey: "duenyo" });
 
-Especie.hasOne(Animal, { foreignKey: "especie" });
+Especie.hasMany(Animal, { foreignKey: "especie" });
 Animal.belongsTo(Especie, { foreignKey: "especie" });
 module.exports = Animal;
