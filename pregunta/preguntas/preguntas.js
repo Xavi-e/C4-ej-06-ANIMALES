@@ -34,19 +34,33 @@ const preguntas = [
         ]
     },
     {
-      name: "nombreNuevo",
-      type: "input",
-      message: "Introduzca nombre nuevo: ",
-      when: (respuestas) => respuestas.consulta === "cambiarNombre",
+        name: "nombreNuevo",
+        type: "input",
+        message: "Introduzca nombre nuevo: ",
+        when: (respuestas) => respuestas.dni === "cambiarNombre",
     },
     {
-      name: "nombreEspecie",
-      message: "Introduce el nombre de la especie:",
-      type: "input",
-      when: (respuestasAnteriores) =>
-        respuestasAnteriores.opcion === "animalesUnaEspecie",
+        name: "nombreEspecie",
+        message: "Introduce el nombre de la especie:",
+        type: "input",
+        when: (respuestasAnteriores) =>
+            respuestasAnteriores.opciones === "animalesUnaEspecie",
     },
-
+    {
+        name: "numeroChip",
+        message: "Introduce el número del chip de tu animal:",
+        type: "input",
+        when: (respuestasAnteriores) =>
+            respuestasAnteriores.opciones === "datosAnimal",
+    },
+    {
+        name: "idAnimalAdoptar",
+        message: "Escoge el animal el cuál desea adoptar",
+        type: "list",
+        choices: animalesPaAdoptar,
+        when: (respuestasAnteriores) =>
+            respuestasAnteriores.opciones === "adopta",
+    }
 
 ];
 module.exports = {
