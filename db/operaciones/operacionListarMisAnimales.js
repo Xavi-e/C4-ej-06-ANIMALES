@@ -17,13 +17,7 @@ const listarMisAnimales = async (idDuenyo) => {
       ["nombre", "DESC"],
     ],
   });
-  console.log("\nAnimales por nombre y especie:");
-  console.log(`total: ${animales.length}`);
-  for (const animal of animales) {
-    console.log(
-      `${animal.nombre} -> Edad: ${animal.edad} Especie: ${animal.Especie.nombre}`
-    );
-  }
+  return animales;
 };
 
 module.exports = {

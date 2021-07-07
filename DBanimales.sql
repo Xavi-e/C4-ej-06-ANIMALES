@@ -46,7 +46,7 @@ CREATE TABLE `animal` (
 
 LOCK TABLES `animal` WRITE;
 /*!40000 ALTER TABLE `animal` DISABLE KEYS */;
-INSERT INTO `animal` VALUES (2,'Perro',2,1,159487326,1);
+INSERT INTO `animal` VALUES (2,'Perro',2,1,159487326,1),(3,'Luis',1,2,133544545,1);
 /*!40000 ALTER TABLE `animal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,7 @@ CREATE TABLE `especie` (
 
 LOCK TABLES `especie` WRITE;
 /*!40000 ALTER TABLE `especie` DISABLE KEYS */;
-INSERT INTO `especie` VALUES (1,'perro');
+INSERT INTO `especie` VALUES (2,'gato'),(1,'perro');
 /*!40000 ALTER TABLE `especie` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
