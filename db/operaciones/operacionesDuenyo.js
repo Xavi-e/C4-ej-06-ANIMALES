@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const Duenyo = require("./schemas/Duenyo");
+const Duenyo = require("../schemas/Duenyo");
 
 const getDuenyo = async (dni) => {
   const Duenyo = await Duenyo.findAll({
