@@ -1,7 +1,7 @@
 const Animal = require("../schemas/Animal");
 const Especie = require("../schemas/Especie");
 
-const listarAnimalesEspecie = async (idDuenyo) => {
+const listarMisAnimales = async (idDuenyo) => {
   const animales = await Animal.findAll({
     where: {
       duenyo: idDuenyo,
@@ -27,5 +27,5 @@ const listarAnimalesEspecie = async (idDuenyo) => {
 };
 
 module.exports = {
-  listarAnimalesEspecie,
+  listarMisAnimales,
 };

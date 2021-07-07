@@ -98,7 +98,7 @@ CREATE TABLE `especie` (
 
 LOCK TABLES `especie` WRITE;
 /*!40000 ALTER TABLE `especie` DISABLE KEYS */;
-INSERT INTO `especie` VALUES (1,'Pastor Suizo');
+INSERT INTO `especie` VALUES (1,'perro');
 /*!40000 ALTER TABLE `especie` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
