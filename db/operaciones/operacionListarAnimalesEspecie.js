@@ -4,17 +4,17 @@ const Especie = require("../schemas/Especie");
 
 const listarMisAnimalesPorEspecie = async (idDuenyo, especie) => {
   const animales = await Especie.findAll({
-    includes: {
+    include: {
       model: Animal,
       required: true,
       where: {
-        nombre: {
-          [Op.like]: especie,
-        },
+        duenyo: idDuenyo,
       },
     },
     where: {
-      duenyo: idDuenyo,
+      nombre: {
+        [Op.like]: especie,
+      },
     },
   });
   return animales;
