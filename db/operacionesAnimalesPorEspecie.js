@@ -1,7 +1,7 @@
 
 const Especie = require("..");
 
-const listarAnimales = async () => {
+const listarAnimalesEspecie = async () => {
   const animales = await animales.findAll({
     include: { model: Especie },
     order: [
@@ -18,5 +18,5 @@ const listarAnimales = async () => {
 };
 
 module.exports = {
-  listarAnimales,
+  listarAnimalesEspecie,
 };
