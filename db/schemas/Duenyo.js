@@ -1,5 +1,4 @@
 const { DataTypes } = require("sequelize");
-const Animal = require("./Animal");
 const sequelize = require("..");
 
 const Duenyo = sequelize.define(
@@ -28,7 +27,5 @@ const Duenyo = sequelize.define(
     timestamps: false,
   }
 );
-Animal.hasMany(Duenyo, { foreignKey: "duenyo" });
-Duenyo.belongsTo(Animal, { foreignKey: "duenyo" });
 
 module.exports = Duenyo;

@@ -24,11 +24,9 @@ const Especie = require("./schemas/Especie");
 // };
 
 const listarTodosMisAnimales = async (dni) => {
-  const animales = await Duenyo.findAll({
+  const animales = await Duenyo.findOne({
     where: {
-      dni: {
-        [Op.like]: dni,
-      },
+      dni,
     },
     include: [
       {

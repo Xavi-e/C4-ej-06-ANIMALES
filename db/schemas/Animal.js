@@ -1,5 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("..");
+const Duenyo = require("./Duenyo");
+const Especie = require("./Especie");
 
 const Animal = sequelize.define(
   "Animal",
@@ -30,4 +32,9 @@ const Animal = sequelize.define(
     timestamps: false,
   }
 );
+Animal.hasMany(Duenyo, { foreignKey: "duenyo" });
+Duenyo.belongsTo(Animal, { foreignKey: "duenyo" });
+
+Animal.hasOne(Especie, { foreignKey: "especie" });
+Especie.belongsTo(Animal, { foreignKey: "especie" });
 module.exports = Animal;
