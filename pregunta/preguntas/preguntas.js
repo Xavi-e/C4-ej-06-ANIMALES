@@ -1,10 +1,7 @@
+const inquirer = require("inquirer");
+const { getDuenyo } = require("../../db/operacionesDuenyo");
 
 const preguntas = [
-    {
-        name: "dni",
-        message: "Si fuera tan amable de indicar su DNI a continuación:",
-        type: "input",
-    },
     {
         name: "opciones",
         message: "Opciones",
@@ -40,6 +37,7 @@ const preguntas = [
         when: (respuestas) => respuestas.dni === "cambiarNombre",
     },
     {
+
         name: "nombreEspecie",
         message: "Introduce el nombre de la especie:",
         type: "input",
@@ -61,6 +59,7 @@ const preguntas = [
         when: (respuestasAnteriores) =>
             respuestasAnteriores.opciones === "adopta",
     }
+
 
 ];
 module.exports = {
