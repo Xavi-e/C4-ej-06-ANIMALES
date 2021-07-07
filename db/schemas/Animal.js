@@ -32,9 +32,9 @@ const Animal = sequelize.define(
     timestamps: false,
   }
 );
-Animal.hasMany(Duenyo, { foreignKey: "duenyo" });
-Duenyo.belongsTo(Animal, { foreignKey: "duenyo" });
+Duenyo.hasMany(Animal, { foreignKey: "duenyo" });
+Animal.belongsTo(Duenyo, { foreignKey: "duenyo" });
 
-Animal.hasOne(Especie, { foreignKey: "especie" });
-Especie.belongsTo(Animal, { foreignKey: "especie" });
+Especie.hasOne(Animal, { foreignKey: "especie" });
+Animal.belongsTo(Especie, { foreignKey: "especie" });
 module.exports = Animal;
