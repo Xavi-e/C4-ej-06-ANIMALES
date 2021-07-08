@@ -1,9 +1,12 @@
 const inquirer = require("inquirer");
-const {animalesSinDuenyo} = require("../../db/operaciones/operacionesAnimalesSinDuenyo");
+const chalk = require("chalk");
+const {
+  animalesSinDuenyo,
+} = require("../../db/operaciones/operacionesAnimalesSinDuenyo");
 
-  const preguntarOpcionesUsuario = async () => { 
-    const    animalesPaAdoptar = await animalesSinDuenyo();
-    return [
+const preguntarOpcionesUsuario = async () => {
+  const animalesPaAdoptar = await animalesSinDuenyo();
+  return [
     {
       name: "opciones",
       message: "Opciones",
@@ -47,15 +50,22 @@ const {animalesSinDuenyo} = require("../../db/operaciones/operacionesAnimalesSin
         respuestasAnteriores.opciones === "datoAnimal",
     },
     {
-      name: "idAnimalAdoptar",
+      name: "animalAdoptar",
       message: "Escoge el animal el cuál desea adoptar",
       type: "list",
-      choices: animalesPaAdoptar.map((animal) => ({ name: animal.nombre ,
-        value: animal.id})), 
-      when: (respuestasAnteriores) => respuestasAnteriores.opciones === "adopta",
+      choices: animalesPaAdoptar.map((animal) => ({
+        name: `${chalk.bold("Nombre:")} ${animal.nombre} ${chalk.bold(
+          "Edad:"
+        )} ${animal.edad} ${chalk.bold("Número de chip:")} ${
+          animal.n_chip
+        } ${chalk.bold("Especie:")} ${animal.Especie.nombre}`,
+        value: animal.id,
+      })),
+      when: (respuestasAnteriores) =>
+        respuestasAnteriores.opciones === "adopta" &&
+        animalesPaAdoptar.length > 0,
     },
   ];
-    
 };
 const preguntarDNI = [
   {
