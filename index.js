@@ -48,6 +48,14 @@ const manejarOpcionesDelUsuario = async (respuestas, idDuenyo) => {
     case "datoAnimal":
       // eslint-disable-next-line no-case-declarations
       const animal = await listarAnimalDuenyo(idDuenyo, respuestas.numeroChip);
+      if (!animal) {
+        console.log(
+          chalk.yellow.bold(
+            "No se ha encontrado ningún animal con ese número de chip."
+          )
+        );
+        process.exit(0);
+      }
       pintarAnimal(animal);
       break;
     case "todosMisAnimales":
@@ -92,6 +100,6 @@ const pintarAnimales = (animales) => {
 const datosAnimal = (animal) =>
   `\n${chalk.bold("Nombre:")} ${animal.nombre}\n${chalk.bold("Edad:")} ${
     animal.edad
-  }\n${chalk.bold("Número de chip:")} ${animal.n_chip}\n${chalk.bold("Especie:")} ${
-    animal.Especie.nombre
-  }`;
+  }\n${chalk.bold("Número de chip:")} ${animal.n_chip}\n${chalk.bold(
+    "Especie:"
+  )} ${animal.Especie.nombre}`;
