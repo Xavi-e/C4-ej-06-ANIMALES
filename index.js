@@ -48,14 +48,12 @@ const manejarOpcionesDelUsuario = async (respuestas, idDuenyo) => {
     case "datoAnimal":
       // eslint-disable-next-line no-case-declarations
       const animal = await listarAnimalDuenyo(idDuenyo, respuestas.numeroChip);
-      console.log(
-        `${animal.nombre} -> Edad: ${animal.edad} Especie: ${animal.Especie.nombre}`
-      );
+      pintarAnimal(animal);
       break;
     case "todosMisAnimales":
       // eslint-disable-next-line no-case-declarations
       const animales = await listarMisAnimales(idDuenyo);
-      pintarTodosMisAnimales(animales);
+      pintarAnimales(animales);
       break;
     case "animalesUnaEspecie":
       if (respuestas.nombreEspecie) {
@@ -71,7 +69,7 @@ const manejarOpcionesDelUsuario = async (respuestas, idDuenyo) => {
           );
           process.exit(0);
         }
-        pintarTodosMisAnimales(animalesEspecie);
+        pintarAnimales(animalesEspecie);
       } else {
         console.log(
           chalk.red.bold("No se ha introducido correctamente la especie!!!")
@@ -83,11 +81,17 @@ const manejarOpcionesDelUsuario = async (respuestas, idDuenyo) => {
       console.log(chalk.red.bold("¡¡¡¡¡Por aquí no debe pasar nunca!!!!!"));
   }
 };
-const pintarTodosMisAnimales = (animales) => {
-  console.log("\nAnimales por nombre y especie:");
+const pintarAnimal = (animal) => {
+  console.log(datosAnimal(animal));
+};
+const pintarAnimales = (animales) => {
   for (const animal of animales) {
-    console.log(
-      `${animal.nombre} -> Edad: ${animal.edad} Especie: ${animal.Especie.nombre}`
-    );
+    console.log(datosAnimal(animal));
   }
 };
+const datosAnimal = (animal) =>
+  `\n${chalk.bold("Nombre:")} ${animal.nombre}\n${chalk.bold("Edad:")} ${
+    animal.edad
+  }\n${chalk.bold("Número de chip:")} ${animal.n_chip}\n${chalk.bold("Especie:")} ${
+    animal.Especie.nombre
+  }`;
