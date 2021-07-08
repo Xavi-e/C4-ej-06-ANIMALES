@@ -12,6 +12,7 @@ const {
   listarMisAnimalesPorEspecie,
 } = require("./db/operaciones/operacionListarAnimalesEspecie");
 
+
 const preguntarDNIUsuario = async () => {
   const respuestas = await preguntar(preguntarDNI);
   return respuestas;
@@ -30,6 +31,15 @@ const consultarDuenyo = async (dni) => {
   }
   return duenyo;
 };
+
+(async () => {
+  const { dni } = await preguntarDNIUsuario();
+  const duenyo = await consultarDuenyo(dni);
+  const idDuenyo = duenyo.id;
+  const respuestas = await darOpcionesAlUsuario();
+  manejarOpcionesDelUsuario(respuestas, idDuenyo);
+})();
+
 const manejarOpcionesDelUsuario = async (respuestas, idDuenyo) => {
   const { opciones } = respuestas;
   switch (opciones) {
@@ -60,14 +70,7 @@ const pintarTodosMisAnimales = (animales) => {
   console.log("\nAnimales por nombre y especie:");
   for (const animal of animales) {
     console.log(
-      `${animal.nombre} -> Edad: ${animal.edad} Especie: ${animal.Especie.nombre}`
+      `${animal.nombre} -> Edad: ${animal.edad} /* Especie: ${animal.Especie.nombre} */`
     );
   }
 };
-(async () => {
-  const { dni } = await preguntarDNIUsuario();
-  const duenyo = await consultarDuenyo(dni);
-  const idDuenyo = duenyo.toJSON().id;
-  const respuestas = await darOpcionesAlUsuario();
-  manejarOpcionesDelUsuario(respuestas, idDuenyo);
-})();
