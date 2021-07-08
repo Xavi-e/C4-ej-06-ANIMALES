@@ -15,6 +15,7 @@ const {
   listarMisAnimalesPorEspecie,
 } = require("./db/operaciones/operacionListarAnimalesEspecie");
 const adoptarAnimal = require("./db/operaciones/operacionesAdoptarAnimal");
+const cambiarNombre = require("./db/operaciones/operacionesCambiarNombre");
 
 const preguntarDNIUsuario = async () => {
   const respuestas = await preguntar(preguntarDNI);
@@ -46,6 +47,22 @@ const consultarDuenyo = async (dni) => {
 const manejarOpcionesDelUsuario = async (respuestas, idDuenyo) => {
   const { opciones } = respuestas;
   switch (opciones) {
+    case "cambiarNombre":
+      const { valido, mensaje } = validarNombre(respuestas.nuevoNombre);
+      if (!valido) {
+        console.log(chalk.red.bold(mensaje));
+        process.exit(1);
+      }
+      const nombreCambiado = await cambiarNombre(
+        respuestas.nuevoNombre,
+        idDuenyo
+      );
+      console.log(
+        nombreCambiado
+          ? chalk.green.bold("Nombre cambiado correctamente!")
+          : chalk.red.bold("No se ha podido cambiar el nombre!")
+      );
+      break;
     case "adopta":
       console.log(respuestas);
       if (!respuestas.animalAdoptar) {
@@ -122,3 +139,12 @@ const datosAnimal = (animal) =>
   }\n${chalk.bold("Número de chip:")} ${animal.n_chip}\n${chalk.bold(
     "Especie:"
   )} ${animal.Especie.nombre}`;
+const validarNombre = (nombre) => {
+  if (!nombre) {
+    return { valido: false, mensaje: "No se ha introducido ningún nombre!!!" };
+  }
+  if (!/^[A-Za-z]+$/.test(nombre)) {
+    return { valido: false, mensaje: "Nombre no válido!!!" };
+  }
+  return { valido: true, mensaje: null };
+};

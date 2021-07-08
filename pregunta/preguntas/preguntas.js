@@ -65,6 +65,13 @@ const preguntarOpcionesUsuario = async () => {
         respuestasAnteriores.opciones === "adopta" &&
         animalesPaAdoptar.length > 0,
     },
+    {
+      name: "nuevoNombre",
+      message: "Introduce el nuevo nombre:",
+      type: "input",
+      when: (respuestasAnteriores) =>
+        respuestasAnteriores.opciones === "cambiarNombre",
+    },
   ];
 };
 const preguntarDNI = [
