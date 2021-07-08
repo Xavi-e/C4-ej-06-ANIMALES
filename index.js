@@ -14,7 +14,7 @@ const { getDuenyo } = require("./db/operaciones/operacionesDuenyo");
 const {
   listarMisAnimalesPorEspecie,
 } = require("./db/operaciones/operacionListarAnimalesEspecie");
-
+const adoptarAnimal = require("./db/operaciones/operacionesAdoptarAnimal");
 
 const preguntarDNIUsuario = async () => {
   const respuestas = await preguntar(preguntarDNI);
@@ -47,9 +47,26 @@ const manejarOpcionesDelUsuario = async (respuestas, idDuenyo) => {
   const { opciones } = respuestas;
   switch (opciones) {
     case "adopta":
-    break;
+      console.log(respuestas);
+      if (!respuestas.animalAdoptar) {
+        console.log(
+          chalk.yellow.bold(
+            "Actualmente, no hay disponibles animales para adoptar."
+          )
+        );
+        process.exit(0);
+      }
+      const animalAdoptado = await adoptarAnimal(
+        respuestas.animalAdoptar,
+        idDuenyo
+      );
+      console.log(
+        animalAdoptado
+          ? chalk.green.bold("Animal adoptado correctamente!")
+          : chalk.red.bold("No se ha podido adoptar al animal!")
+      );
+      break;
     case "datoAnimal":
-      // eslint-disable-next-line no-case-declarations
       const animal = await listarAnimalDuenyo(idDuenyo, respuestas.numeroChip);
       if (!animal) {
         console.log(
@@ -62,7 +79,6 @@ const manejarOpcionesDelUsuario = async (respuestas, idDuenyo) => {
       pintarAnimal(animal);
       break;
     case "todosMisAnimales":
-      // eslint-disable-next-line no-case-declarations
       const animales = await listarMisAnimales(idDuenyo);
       pintarAnimales(animales);
       break;
