@@ -31,6 +31,7 @@ const preguntarOpcionesUsuario = [
   {
     name: "nombreEspecie",
     message: "Introduce el nombre de la especie:",
+    value: "nombreEspecie",
     type: "input",
     when: (respuestasAnteriores) =>
       respuestasAnteriores.opciones === "animalesUnaEspecie",

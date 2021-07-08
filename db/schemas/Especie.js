@@ -16,7 +16,7 @@ const Especie = sequelize.define(
     },
   },
   {
-    tableName: "Especie",
+    tableName: "especie",
     timestamps: false,
   }
 );
