@@ -41,7 +41,7 @@ const preguntarOpcionesUsuario = [
     message: "Introduce el número del chip de tu animal:",
     type: "input",
     when: (respuestasAnteriores) =>
-      respuestasAnteriores.opciones === "datosAnimal",
+      respuestasAnteriores.opciones === "datoAnimal",
   },
   // {
   //   name: "idAnimalAdoptar",
