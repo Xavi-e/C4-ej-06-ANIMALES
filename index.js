@@ -15,12 +15,13 @@ const {
   listarMisAnimalesPorEspecie,
 } = require("./db/operaciones/operacionListarAnimalesEspecie");
 
+
 const preguntarDNIUsuario = async () => {
   const respuestas = await preguntar(preguntarDNI);
   return respuestas;
 };
 const darOpcionesAlUsuario = async () => {
-  const respuestas = await preguntar(preguntarOpcionesUsuario);
+  const respuestas = await preguntar(await preguntarOpcionesUsuario());
   return respuestas;
 };
 const consultarDuenyo = async (dni) => {
@@ -45,6 +46,8 @@ const consultarDuenyo = async (dni) => {
 const manejarOpcionesDelUsuario = async (respuestas, idDuenyo) => {
   const { opciones } = respuestas;
   switch (opciones) {
+    case "adopta":
+    break;
     case "datoAnimal":
       // eslint-disable-next-line no-case-declarations
       const animal = await listarAnimalDuenyo(idDuenyo, respuestas.numeroChip);
