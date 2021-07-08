@@ -1,4 +1,5 @@
 const chalk = require("chalk");
+const { listarAnimalDuenyo } =require("./db/operaciones/operacionesDatoAnimal");
 const { preguntar } = require("./pregunta/preguntador");
 const {
   listarMisAnimales,
@@ -43,6 +44,12 @@ const consultarDuenyo = async (dni) => {
 const manejarOpcionesDelUsuario = async (respuestas, idDuenyo) => {
   const { opciones } = respuestas;
   switch (opciones) {
+    case "datoAnimal":
+      // eslint-disable-next-line no-case-declarations
+      const animal = await listarAnimalDuenyo( idDuenyo, respuestas.numeroChip);
+      console.log( `${animal.nombre} -> Edad: ${animal.edad} Especie: ${animal.Especie.nombre}`);
+  
+      break;
     case "todosMisAnimales":
       // eslint-disable-next-line no-case-declarations
       const animales = await listarMisAnimales(idDuenyo);
@@ -70,7 +77,7 @@ const pintarTodosMisAnimales = (animales) => {
   console.log("\nAnimales por nombre y especie:");
   for (const animal of animales) {
     console.log(
-      `${animal.nombre} -> Edad: ${animal.edad} /* Especie: ${animal.Especie.nombre} */`
+      `${animal.nombre} -> Edad: ${animal.edad} Especie: ${animal.Especie.nombre}`
     );
   }
 };
