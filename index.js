@@ -1,5 +1,7 @@
 const chalk = require("chalk");
-const { listarAnimalDuenyo } =require("./db/operaciones/operacionesDatoAnimal");
+const {
+  listarAnimalDuenyo,
+} = require("./db/operaciones/operacionesDatoAnimal");
 const { preguntar } = require("./pregunta/preguntador");
 const {
   listarMisAnimales,
@@ -12,7 +14,6 @@ const { getDuenyo } = require("./db/operaciones/operacionesDuenyo");
 const {
   listarMisAnimalesPorEspecie,
 } = require("./db/operaciones/operacionListarAnimalesEspecie");
-
 
 const preguntarDNIUsuario = async () => {
   const respuestas = await preguntar(preguntarDNI);
@@ -46,9 +47,10 @@ const manejarOpcionesDelUsuario = async (respuestas, idDuenyo) => {
   switch (opciones) {
     case "datoAnimal":
       // eslint-disable-next-line no-case-declarations
-      const animal = await listarAnimalDuenyo( idDuenyo, respuestas.numeroChip);
-      console.log( `${animal.nombre} -> Edad: ${animal.edad} Especie: ${animal.Especie.nombre}`);
-  
+      const animal = await listarAnimalDuenyo(idDuenyo, respuestas.numeroChip);
+      console.log(
+        `${animal.nombre} -> Edad: ${animal.edad} Especie: ${animal.Especie.nombre}`
+      );
       break;
     case "todosMisAnimales":
       // eslint-disable-next-line no-case-declarations
@@ -61,6 +63,14 @@ const manejarOpcionesDelUsuario = async (respuestas, idDuenyo) => {
           idDuenyo,
           respuestas.nombreEspecie
         );
+        if (animalesEspecie.length === 0) {
+          console.log(
+            chalk.yellow.bold(
+              "No se ha encontrado ningún animal de la especie que busca."
+            )
+          );
+          process.exit(0);
+        }
         pintarTodosMisAnimales(animalesEspecie);
       } else {
         console.log(

@@ -7,13 +7,13 @@ const listarMisAnimalesPorEspecie = async (idDuenyo, especie) => {
     include: {
       model: Especie,
       required: true,
-
-    },
-    where: { duenyo : idDuenyo, 
-      nombre: {
-        [Op.like]: especie,
+      where: {
+        nombre: {
+          [Op.like]: especie,
+        },
       },
     },
+    where: { duenyo: idDuenyo },
   });
   return animales;
 };
